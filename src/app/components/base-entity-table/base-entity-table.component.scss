@@ -1,0 +1,27 @@
+.top-container {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+
+  mat-form-field {
+    background-color: white;
+    margin: auto;
+    flex-grow: 1;
+    max-width: 500px;
+  }
+
+  button {
+    flex-shrink: 0;
+  }
+}
+
+table {
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  width: 100%;
+  padding: 20px;
+
+  .table-container {
+    width: 100%;
+  }
+}

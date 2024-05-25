@@ -1,0 +1,54 @@
+<h2 mat-dialog-title>{{ data.isAdd ? 'Add' : 'Update'}} processor</h2>
+<mat-dialog-content>
+  <form class="container" [formGroup]="form" (ngSubmit)="form.valid && dialogRef.close(form.value)">
+    <mat-form-field appearance="outline">
+      <mat-label>Producer</mat-label>
+      <mat-select formControlName="producerId">
+        @for (producer of producers | async; track producer) {
+        <mat-option [value]="producer.uuid">{{ producer.name }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Model</mat-label>
+      <input matInput formControlName="model" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Socket</mat-label>
+      <mat-select formControlName="socketId">
+        @for (socket of sockets | async; track socket) {
+        <mat-option [value]="socket.uuid">{{ socket.name }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Cores</mat-label>
+      <input matInput type="number" formControlName="cores" min="0" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Threads</mat-label>
+      <input matInput type="number" formControlName="threads" min="0" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Core clock</mat-label>
+      <input matInput type="number" formControlName="coreClock" min="0" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Boost clock</mat-label>
+      <input matInput type="number" formControlName="boostClock" min="0" />
+    </mat-form-field>
+    <mat-checkbox formControlName="graphics">Has graphics</mat-checkbox>
+    <mat-form-field appearance="outline">
+      <mat-label>Price</mat-label>
+      <input matInput type="number" formControlName="price" min="0" />
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button class="error-button" mat-flat-button mat-dialog-close>
+    Cancel
+  </button>
+  <button [disabled]="form.invalid" mat-flat-button [mat-dialog-close]="form.value">
+    {{ data.isAdd ? 'Add' : 'Update'}}
+  </button>
+</mat-dialog-actions>

@@ -1,0 +1,23 @@
+.main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+
+  mat-card {
+    max-width: 800px;
+    margin: auto;
+
+    mat-card-header {
+      padding: 20px;
+    }
+  }
+
+  .banner-image,
+  .info-image {
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
+    border-radius: 4px;
+  }
+}

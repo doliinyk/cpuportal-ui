@@ -1,0 +1,9 @@
+<button mat-flat-button (click)="onAddUpdate()">Add processor</button>
+<div class="container">
+  @for (processor of processors | async; track processor) {
+  <app-processor-card [processor]="processor" (update)="onAddUpdate($event)" (delete)="onDelete($event)"
+    [isUserProcessorsTab]="true"></app-processor-card>
+  }
+</div>
+<mat-paginator [length]="totalElements" [pageSizeOptions]="[10, 50, 100]" (page)="onPageChange($event)"
+  showFirstLastButtons="true"></mat-paginator>

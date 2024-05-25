@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>{{ title }}</h2>
+<mat-dialog-content>
+  <form class="container" [formGroup]="form" (ngSubmit)="form.valid && dialogRef.close(form.value)">
+    @for(control of form.controls | keyvalue; track control) {
+    @if (control.key !== 'uuid') {
+    <mat-form-field appearance="outline">
+      <mat-label>{{ control.key | titlecase }}</mat-label>
+      <input matInput [formControlName]="control.key" />
+    </mat-form-field>
+    }
+    }
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button class="error-button" mat-flat-button mat-dialog-close>
+    {{ cancelButtonText }}
+  </button>
+  <button [disabled]="form.invalid" mat-flat-button [mat-dialog-close]="form.value">
+    {{ saveButtonText }}
+  </button>
+</mat-dialog-actions>

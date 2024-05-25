@@ -1,0 +1,101 @@
+<div class="filters">
+  <form (ngSubmit)="applyFilter()">
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Producers</mat-label>
+        <mat-select [(ngModel)]="filter['producerIds']" name="producerIds" multiple>
+          @for (producer of producers | async; track producer) {
+          <mat-option [value]="producer.uuid">{{ producer.name }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Model</mat-label>
+        <input matInput [(ngModel)]="filter['model']" name="model">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Sockets</mat-label>
+        <mat-select [(ngModel)]="filter['socketIds']" name="socketIds" multiple>
+          @for (socket of sockets | async; track socket) {
+          <mat-option [value]="socket.uuid">{{ socket.name }}</mat-option>
+          } </mat-select>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Min Cores</mat-label>
+        <input matInput type="number" [(ngModel)]="filter['minCores']" name="minCores">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Max Cores</mat-label>
+        <input matInput type="number" [(ngModel)]="filter['maxCores']" name="maxCores">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Min Threads</mat-label>
+        <input matInput type="number" [(ngModel)]="filter['minThreads']" name="minThreads">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Max Threads</mat-label>
+        <input matInput type="number" [(ngModel)]="filter['maxThreads']" name="maxThreads">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Min Core Clock</mat-label>
+        <input matInput type="number" [(ngModel)]="filter['minCoreClock']" name="minCoreClock">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Max Core Clock</mat-label>
+        <input matInput type="number" [(ngModel)]="filter['maxCoreClock']" name="maxCoreClock">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Min Boost Clock</mat-label>
+        <input matInput type="number" [(ngModel)]="filter['minBoostClock']" name="minBoostClock">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Max Boost Clock</mat-label>
+        <input matInput type="number" [(ngModel)]="filter['maxBoostClock']" name="maxBoostClock">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-checkbox [(ngModel)]="filter['graphics']" name="graphics">Graphics</mat-checkbox>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Min Price</mat-label>
+        <input matInput type="number" [(ngModel)]="filter['minPrice']" name="minPrice">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Max Price</mat-label>
+        <input matInput type="number" [(ngModel)]="filter['maxPrice']" name="maxPrice">
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Sort by price</mat-label>
+        <mat-select value="desc" (selectionChange)="onSortChange($event)" name="sort">
+          <mat-option value="desc">Descending</mat-option>
+          <mat-option value="asc">Ascending</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-stroked-button color="primary" type="submit">Apply Filters</button>
+    </div>
+  </form>
+</div>
+<div class="wrapper">
+  <div class="container">
+    @for (processor of processors | async; track processor) {
+    <app-processor-card [processor]="processor"></app-processor-card>
+    }
+  </div>
+  <mat-paginator [length]="totalElements" [pageSizeOptions]="[10, 50, 100]" (page)="onPageChange($event)"
+    showFirstLastButtons="true"></mat-paginator>
+</div>

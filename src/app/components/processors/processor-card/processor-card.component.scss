@@ -1,0 +1,33 @@
+mat-card {
+  margin: 20px;
+
+  mat-card-header {
+    border-bottom: 1px solid #e9ecef;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+  }
+
+  mat-card-content {
+    display: flex;
+    flex-direction: column;
+    min-height: 250px;
+    justify-content: space-between;
+    padding: 10px;
+
+    p {
+      margin: 5px 0;
+    }
+  }
+
+  mat-card-footer {
+    display: flex;
+    justify-content: space-around;
+
+    button {
+      margin: 0 5px 5px;
+      flex: 1;
+      border-radius: var(--mdc-outlined-card-container-shape);
+    }
+  }
+}

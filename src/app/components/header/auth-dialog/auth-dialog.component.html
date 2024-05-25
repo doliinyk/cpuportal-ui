@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>{{ title }}</h2>
+<mat-dialog-content>
+  <form class="container" [formGroup]="credentialsForm"
+    (ngSubmit)="credentialsForm.valid && dialogRef.close(credentials)">
+    <mat-form-field appearance="outline">
+      <mat-label>Username</mat-label>
+      <input matInput formControlName="username" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input matInput formControlName="password" type="password" />
+    </mat-form-field>
+  </form>
+  <p class="sign-in-up" (click)="onChangeSignInUp()">{{ signInUpTitle }}</p>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button class="error-button" mat-flat-button mat-dialog-close>
+    Cancel
+  </button>
+  <button [disabled]="credentialsForm.invalid" mat-flat-button [mat-dialog-close]="{ credentials, isSignUp }">
+    {{ title }}
+  </button>
+</mat-dialog-actions>

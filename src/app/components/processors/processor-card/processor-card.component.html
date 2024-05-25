@@ -1,0 +1,24 @@
+<mat-card appearance="outlined">
+  <mat-card-header>
+    <mat-card-title>
+      {{ processor?.producer?.name }} {{ processor?.model }}
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p><strong>Socket:</strong> {{ processor?.socket?.name }}</p>
+    <p><strong>Cores:</strong> {{ processor?.cores }}</p>
+    <p><strong>Threads:</strong> {{ processor?.threads }}</p>
+    <p><strong>Core Clock:</strong> {{ processor?.coreClock }} MHz</p>
+    @if (processor?.boostClock) {
+    <p><strong>Boost Clock:</strong> {{ processor?.boostClock }} MHz</p>
+    }
+    <p><strong>Graphics:</strong> {{ processor?.graphics ? "Yes" : "No" }}</p>
+    <p><strong>Price:</strong> {{ processor?.price | currency }}</p>
+  </mat-card-content>
+  @if (isUserProcessorsTab) {
+  <mat-card-footer>
+    <button mat-button (click)="onUpdate()">Edit</button>
+    <button class="error-button" mat-button (click)="onDelete()">Delete</button>
+  </mat-card-footer>
+  }
+</mat-card>

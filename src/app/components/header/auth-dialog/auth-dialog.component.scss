@@ -1,0 +1,39 @@
+h2 {
+  text-align: center;
+}
+
+mat-dialog-content {
+  padding: 10px !important;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+
+    input:-webkit-autofill {
+      box-shadow: inset 100px 100px white;
+      
+      &:focus {
+        box-shadow: inset 100px 100px white;
+      }
+    }
+
+    .mat-mdc-form-field:hover input:-webkit-autofill {
+      box-shadow: inset 100px 100px white;
+    }
+  }
+
+  .sign-in-up {
+    cursor: pointer;
+    text-align: right;
+    color: var(--mdc-text-button-label-text-color);
+    user-select: none;
+  }
+}
+
+mat-dialog-actions {
+  justify-content: space-around;
+
+  button {
+    flex: 1;
+  }
+}

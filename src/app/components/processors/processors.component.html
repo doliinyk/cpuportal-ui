@@ -1,0 +1,14 @@
+<mat-tab-group mat-stretch-tabs="false" mat-align-tabs="center">
+  <mat-tab [label]="authService.isAuthenticated() ? 'All processors' : 'Processors'">
+    <ng-template matTabContent>
+      <app-all-processors [producers]="producers" [sockets]="sockets"></app-all-processors>
+    </ng-template>
+  </mat-tab>
+  @if (authService.isAuthenticated()) {
+  <mat-tab label="My processors">
+    <ng-template matTabContent>
+      <app-user-processors [producers]="producers" [sockets]="sockets"></app-user-processors>
+    </ng-template>
+  </mat-tab>
+  }
+</mat-tab-group>

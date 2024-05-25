@@ -1,0 +1,25 @@
+<header>
+  <span class="container">
+    <a class="mat-headline-5" mat-raised-button routerLink="">CPU Portal</a>
+    <a mat-flat-button routerLink="producers" routerLinkActive="tertiary-button">
+      Producers
+    </a>
+    <a mat-flat-button routerLink="sockets" routerLinkActive="tertiary-button">
+      Sockets
+    </a>
+    <a mat-flat-button routerLink="processors" routerLinkActive="tertiary-button">
+      Processors
+    </a>
+  </span>
+  <span class="container">
+    @if (authService.isAuthenticated()) {
+    <a mat-mini-fab matTooltip="Profile" routerLink="profile">
+      <mat-icon fontIcon="person"></mat-icon>
+    </a>
+    }
+    <a mat-mini-fab (click)="authService.isAuthenticated() ? onSignOut() : onSignInUp()"
+      [matTooltip]="authService.isAuthenticated() ? 'Sign Out' : 'Sign In/Sign Up'">
+      <mat-icon [fontIcon]="authService.isAuthenticated() ? 'logout' : 'login'"></mat-icon>
+    </a>
+  </span>
+</header>
