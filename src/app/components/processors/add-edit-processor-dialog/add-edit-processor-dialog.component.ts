@@ -61,7 +61,7 @@ export class AddEditProcessorDialogComponent {
     ),
     boostClock: new FormControl(this.data.processor?.boostClock ?? false),
     graphics: new FormControl(
-      this.data.processor?.graphics,
+      this.data.processor?.graphics ?? false,
       Validators.required
     ),
     price: new FormControl(this.data.processor?.price, Validators.required),
