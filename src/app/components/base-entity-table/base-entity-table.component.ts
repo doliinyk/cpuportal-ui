@@ -170,6 +170,7 @@ export class BaseEntityTableComponent<T extends BaseEntity>
       .subscribe((updatedEntity: T) => {
         if (!entity && this.dataSource.data.length < this.paginator.pageSize) {
           this.dataSource.data = [...this.dataSource.data, updatedEntity];
+          this.totalElements.next(this.dataSource.data.length);
           return;
         }
 
