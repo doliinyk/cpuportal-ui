@@ -162,16 +162,20 @@ export class BaseEntityTableComponent<T extends BaseEntity>
           )
         )
       )
-      .subscribe((entity: T) => {
-        if (!entity) {
-          this.dataSource.data = [...this.dataSource.data, entity];
+      .subscribe((updatedEntity: T) => {
+        if (
+          !entity &&
+          this.dataSource.paginator &&
+          this.dataSource.data.length < this.dataSource.paginator.pageSize
+        ) {
+          this.dataSource.data = [...this.dataSource.data, updatedEntity];
           return;
         }
 
         const index = this.dataSource.data.findIndex(
-          (e) => e.uuid === entity.uuid
+          (e) => e.uuid === updatedEntity.uuid
         );
-        this.dataSource.data[index] = entity;
+        this.dataSource.data[index] = updatedEntity;
         this.dataSource.data = [...this.dataSource.data];
       });
   }
