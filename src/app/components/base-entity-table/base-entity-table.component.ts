@@ -22,7 +22,11 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import {
+  MatPaginator,
+  MatPaginatorModule,
+  PageEvent,
+} from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -68,6 +72,7 @@ export class BaseEntityTableComponent<T extends BaseEntity>
   implements OnInit, AfterViewInit
 {
   @ViewChild(MatSort) protected readonly sort!: MatSort;
+  @ViewChild(MatPaginator) protected readonly paginator!: MatPaginator;
 
   @Input() public title!: string;
   @Input() public service!: BaseEntityService<T>;
@@ -163,11 +168,7 @@ export class BaseEntityTableComponent<T extends BaseEntity>
         )
       )
       .subscribe((updatedEntity: T) => {
-        if (
-          !entity &&
-          this.dataSource.paginator &&
-          this.dataSource.data.length < this.dataSource.paginator.pageSize
-        ) {
+        if (!entity && this.dataSource.data.length < this.paginator.pageSize) {
           this.dataSource.data = [...this.dataSource.data, updatedEntity];
           return;
         }
